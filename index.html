@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roblox Username Generator PRO</title>
+
+<style>
+:root {
+    --bg-color: #151515;
+    --text-color: white;
+    --btn-color: #00d0ff;
+    --btn-hover: #00a9d1;
+    --highlight: #00ff95;
+}
+
+body.dark {
+    --bg-color: #151515;
+    --text-color: white;
+    --btn-color: #00d0ff;
+    --btn-hover: #00a9d1;
+    --highlight: #00ff95;
+}
+
+body.light {
+    --bg-color: #f4f4f4;
+    --text-color: #111;
+    --btn-color: #ff9500;
+    --btn-hover: #e57c00;
+    --highlight: #ff3b30;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 40px;
+    transition: background 0.3s, color 0.3s;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.box {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    width: 90%;
+    max-width: 400px;
+}
+
+body.light .box {
+    background: #ddd;
+}
+
+button {
+    background: var(--btn-color);
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: var(--btn-hover);
+}
+
+#usernameDisplay {
+    font-size: 24px;
+    margin-top: 15px;
+    color: var(--highlight);
+    font-weight: bold;
+    word-break: break-all;
+}
+
+.toggle-theme {
+    margin-top: 15px;
+    background: #555;
+    color: white;
+    width: auto;
+}
+
+footer {
+    margin-top: 50px;
+    opacity: 0.6;
+    font-size: 13px;
+}
+</style>
+
+</head>
+<body class="dark">
+
+<h1>Roblox Username Generator PRO</h1>
+
+<div class="box">
+    <button onclick="generateUsername()">Generate Rare Username</button>
+    <div id="usernameDisplay">Your username will appear here</div>
+    <button onclick="checkUsername()">Check Availability</button>
+    <button class="toggle-theme" onclick="toggleTheme()">Toggle Dark/Light Mode</button>
+</div>
+
+<footer>
+    Made by Kai 💙 | Roblox Username Generator PRO
+</footer>
+
+<script>
+const words1 = ["Ultra","Mega","Shadow","Omega","Fire","Nova","Cool","Epic","Rbx","Kai","Cyber","Star","Alpha","Lucky"];
+const words2 = ["Player","Gamer","Ninja","Master","Lord","Hero","Beast","Kid","Pro","Legend","King","Queen","Ghost"];
+
+function generateUsername() {
+    let num = Math.floor(Math.random() * 99999);
+    let special = Math.random() < 0.3 ? "_" : ""; // 30% chance to add underscore
+    let capWord = Math.random() < 0.2 ? String.fromCharCode(65 + Math.floor(Math.random()*26)) : ""; // 20% chance extra char
+    let name = 
+        words1[Math.floor(Math.random() * words1.length)] +
+        words2[Math.floor(Math.random() * words2.length)] +
+        num +
+        special +
+        capWord;
+
+    document.getElementById("usernameDisplay").textContent = name;
+}
+
+function checkUsername() {
+    let name = document.getElementById("usernameDisplay").textContent;
+    if (name.includes("Your username")) {
+        alert("Generate a username first!");
+        return;
+    }
+    // Open Roblox signup with username filled
+    window.open("https://www.roblox.com/account/signupredir?username=" + encodeURIComponent(name));
+}
+
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+}
+</script>
+
+</body>
+</html>
